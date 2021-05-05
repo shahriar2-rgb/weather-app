@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+   
+  </head>
+
+
+  <div class="content">
+    <section class="hero is-primary">
+      <div class="hero-body">
+          <div class="container">
+              <h1 class="title">
+                {% block title %}City name doesnot match{% endblock %} 
+                {% block content %} 
+
+  <h5>Oops!!! It seems that the city you typed doesnot exists in planet earth but may be in some other planet!!</h5> 
+  <a href={{url_for('index_get')}}><p>Click Here </a>For now, try cities that are part of this world</p> 
+  {% endblock %} 
+          </div>
+      </div>
+    </section>
+</div>
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" type = "text/css" href="/static/css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />-->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+   
+  </head>
+  <body>
+    <div class="content">
+      <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+              <h1>Welcome to the weather app</h1>
+                <h3 class="title">
+                    What's the weather like?
+                </h3>
+            </div>
+        </div>
+    </section>
+
+      <section class="search">
+        <div class="container">
+          <div class="columns">
+            <div class="column is-offset-4 is-4">
+              <form method="POST">
+                <div class="field has-addons">
+                  <div class="control is-expanded">
+                    <input
+                      class="input"
+                      name="city"
+                      type="text"
+                      placeholder="City Name"
+                    />
+                  </div>
+                  <div class="control">
+                    <button class="button is-info">Add City</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+   <section class="section">
+       <!-- <div class="container">
+             <div class="columns">
+                <div class="column is-offset-4 is-4"> -->
+<!-- ************-->
+<div class="card" >
+  <img class="card-img-top" src="http://openweathermap.org/img/w/{{ new_data.icon }}.png" alt="Image">
+  <div class="card-body">
+      <h3 class="card-title">{{ new_data.city }}</h3>
+      <h5 class="card-subtitle">{{ new_data.temperature }}°C</h5>
+      <p class="card-text">{{ new_data.description }}</p>
+      <a class="card-link">H: {{ new_data.High }}</a>
+      <a class="card-link">L: {{ new_data.Low }}</a>
+  </div>
+
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Humidity is: {{ new_data.humidity }}% </li>
+      <li class="list-group-item">Feels like: {{ new_data.feels_like }}°C</li>
+      <li class="list-group-item">Wind speed: {{ new_data.wind_speed }}m/s</li>
+      <li class="list-group-item">Pressure: {{ new_data.pressure }}hPa</li>
+    </ul>
+</div>
+       <!--   </div>
+            </div>
+        </div>-->
+    </section>
+<!-- ************-->
+
+<section class="hero is-primary">
+  <div class="hero-body">
+      <div class="container">
+        <h3 class="title">Earlier search results</h3>
+      </div>
+  </div>
+</section>
+<section class="section">
+ <!-- <div class="container">
+      <div class="columns">
+          <div class="column is-offset-4 is-4">-->
+                  {% for weather in weather_data[:-1] %}
+                  <div class="card" >
+                    <img class="card-img-top" src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ weather.city }}</h3>
+                        <h5 class="card-subtitle">{{ weather.temperature | round(1, 'common')}}°C</h5>
+                        <p class="card-text">{{ weather.description }}</p>
+                        <a class="card-link">H: {{ weather.High | round(1, 'common')}}</a>
+                        <a class="card-link">L: {{ weather.Low | round(1, 'common')}}</a>
+                    </div>
+                 
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Humidity is: {{ weather.humidity }}% </li>
+                        <li class="list-group-item">Feels like: {{ weather.feels_like | round(1, 'common')}}°C</li>
+                        <li class="list-group-item">Wind speed: {{ weather.wind_speed }}m/s</li>
+                        <li class="list-group-item">Pressure: {{ weather.pressure }}hPa</li>
+                      </ul>
+                </div>
+                  {% endfor %}
+               <!-- </div>
+            </div>
+        </div>-->
+    </section>
+  </body>
+</html>

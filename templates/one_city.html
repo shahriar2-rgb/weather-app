@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+   
+  </head>
+  <body>
+      
+  
+  <div class="content">
+    <section class="hero is-primary">
+      <div class="hero-body">
+          <div class="container">
+              <h1 class="title">
+                {% block content %} 
+
+                <h1>Do you live in {{weather.city }}?</h1> 
+                <p>You searched this city before, let's try other city<a href={{url_for('index_get')}}> Click Here </a>
+                {% endblock %} 
+                </p> 
+          </div>
+      </div>
+    </section>
+</div>
+    
+<div class="card" >
+    <img class="card-img-top" src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+    <div class="card-body">
+        <h3 class="card-title">{{ weather.city }}</h3>
+        <h5 class="card-subtitle">{{ weather.temperature }}°C</h5>
+        <p class="card-text">{{ weather.description }}</p>
+        <a class="card-link">H: {{ weather.High }}</a>
+        <a class="card-link">L: {{ weather.Low }}</a>
+    </div>
+ 
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Humidity is: {{ weather.humidity }}% </li>
+        <li class="list-group-item">Feels like: {{ weather.feels_like }}°C</li>
+        <li class="list-group-item">Wind speed: {{ weather.wind_speed }}m/s</li>
+        <li class="list-group-item">Pressure: {{ weather.pressure }}hPa</li>
+      </ul>
+</div>
+    
+</body>
+</html>
